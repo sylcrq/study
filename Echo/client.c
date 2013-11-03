@@ -4,8 +4,7 @@
 #include <arpa/inet.h>
 #include <string.h>
 
-const char*    echo_server_ip   = "10.1.35.41";
-const uint16_t echo_server_port = 8989;
+#include "settings.h"
 
 int main()
 {
@@ -18,17 +17,17 @@ int main()
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
-    addr.sin_addr.s_addr = inet_addr(echo_server_ip);
-    addr.sin_port = htons(echo_server_port);
+    addr.sin_addr.s_addr = inet_addr(ECHO_SERVER_IP_ADDR);
+    addr.sin_port = htons(ECHO_SERVER_PORT);
 
     printf("[CLIENT] # connecting...\n");
 
     if(connect(fd, (const struct sockaddr*)&addr, sizeof(addr)) < 0) {
-        printf("[CLIENT] # connect to %s:%d failed\n", "10.1.35.41", 8989);
+        printf("[CLIENT] # connect to %s:%d failed\n", inet_ntoa(addr.sin_addr), ECHO_SERVER_PORT);
         return -1;
     }
 
-    printf("[CLIENT] # connect to %s:%d success\n", "10.1.35.41", 8989);
+    printf("[CLIENT] # connect to %s:%d success\n", inet_ntoa(addr.sin_addr), ECHO_SERVER_PORT);
 
     while(1)
     {

@@ -1,73 +1,136 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <arpa/inet.h>
+#include <netinet/in.h>
 #include <string.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <pthread.h>
+#include <assert.h>
 
-const char*    echo_server_ip   = "10.1.35.41";
-const uint16_t echo_server_port = 8989;
+#include "settings.h"
+
+typedef struct _echo_client
+{
+    int fd;
+    uint32_t ip;
+    uint16_t port;
+}echo_client;
+
+int server_fd = -1;
+//struct array to store incoming TCP connection
+echo_client* clients[10] = {0};
+uint16_t clients_num = 0;
+
+void* thread_func(void* args)
+{
+    printf("[SERVER] # thread to accept connection\n");
+
+    assert( server_fd > 0 );
+
+    while(1)
+    {
+        struct sockaddr_in caddr;
+        socklen_t caddrlen;
+
+        int fd = accept(server_fd, (struct sockaddr*)&caddr, &caddrlen);
+
+        if(fd <= 0) {
+            printf("[SERVER] # accept:%d\n", fd);
+            sleep(1);
+            continue;
+        }
+
+        printf("[SERVER] # accept incoming TCP connection\n");
+
+        //insert
+        echo_client* pclient = (echo_client*)malloc(sizeof(echo_client));
+        memset(pclient, 0, sizeof(echo_client));
+
+        pclient->fd   = fd;
+        pclient->ip   = caddr.sin_addr.s_addr;
+        pclient->port = ntohs(caddr.sin_port);
+
+        printf("[SERVER] # fd: %d, %s:%d\n", pclient->fd, inet_ntoa(caddr.sin_addr), pclient->port);
+
+        clients[clients_num] = pclient;
+        clients_num++;
+    }
+
+    return NULL;
+}
 
 int main()
 {
-    int fd = socket(AF_INET, SOCK_STREAM, 0);
-    if(fd < 0) {
+    server_fd = socket(AF_INET, SOCK_STREAM, 0);
+    if(server_fd < 0) {
         printf("[SERVER] # create socket failed\n");
         return -1;
     }
 
-    int v = fcntl(fd, F_GETFL, 0);
-    if( fcntl(fd, F_SETFL, v|O_NONBLOCK) < 0 ) {
+    //设置socket为非阻塞模式
+    int v = fcntl(server_fd, F_GETFL, 0);
+    if( fcntl(server_fd, F_SETFL, v|O_NONBLOCK) < 0 ) {
         printf("[SERVER] # fcntl failed\n");
+        close(server_fd);
         return -1;
     }
 
-    struct sockaddr_in saddr, caddr;
+    struct sockaddr_in saddr;
     memset(&saddr, 0, sizeof(saddr));
-    memset(&caddr, 0, sizeof(caddr));
 
     saddr.sin_family = AF_INET;
     saddr.sin_addr.s_addr = htonl(INADDR_ANY);
-    saddr.sin_port = htons(echo_server_port);
+    saddr.sin_port = htons(ECHO_SERVER_PORT);
 
-    if( bind(fd, (const struct sockaddr*)&saddr, sizeof(saddr)) < 0 ) {
+    if( bind(server_fd, (const struct sockaddr*)&saddr, sizeof(saddr)) < 0 ) {
         printf("[SERVER] # bind server addr failed\n");
+        close(server_fd);
         return -1;
     }
 
-    if( listen(fd, 10) < 0 ) {
+    if( listen(server_fd, 10) < 0 ) {
         printf("[SERVER] # listen failed\n");
+        close(server_fd);
         return -1;
     }
 
     printf("[SERVER] # waiting for connect...\n");
 
-#if 0
-    pthread_create();
-
-    socklen_t addrlen;
-    int client = -1;
-
-    while( (client = accept(fd, (struct sockaddr*)&caddr, &addrlen)) < 0 )
-    {}
-
-    printf("[SERVER] # incoming ip:%s, port:%d\n", inet_ntoa(caddr.sin_addr), ntohs(caddr.sin_port));
-
-    char buffer[1024];
-
-    while(1)
-    {
-        int n = recv(client, buffer, 1024, 0);
-        printf("[SERVER] # recv %d bytes\n", n);
-
-        sleep(1);
+    pthread_t pid;
+    pthread_attr_t attr;
+    //create线程accept incoming TCP连接
+    if( pthread_create(&pid, NULL, thread_func, NULL) != 0) {
+        printf("[SERVER] # create thread failed\n");
+        close(server_fd);
+        return -1;
     }
 
-    close(client);
-#endif
-    close(fd);
+    while(1) 
+    {
+        //select
+    }
+
+    printf("[SERVER] # clear\n");
+
+    //回收线程资源
+    pthread_join(pid, NULL);
+
+    //close client socket fd & free
+    uint16_t i = 0;
+    for(i=0; i<clients_num; i++) {
+        if(clients[i]) {
+            echo_client* p = clients[i];
+            close(p->fd);
+            free(p);
+            p = NULL;
+        }
+    }
+
+    //close server fd
+    close(server_fd);
 
     return 0;
 }
