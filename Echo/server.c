@@ -25,6 +25,11 @@ int server_fd = -1;
 echo_client* clients[10] = {0};
 uint16_t clients_num = 0;
 
+//Receive and Send Buffer
+char buffer[1024] = {0};
+
+pthread_mutex_t lock;
+
 void* thread_func(void* args)
 {
     printf("[SERVER] # thread to accept connection\n");
@@ -56,8 +61,10 @@ void* thread_func(void* args)
 
         printf("[SERVER] # fd: %d, %s:%d\n", fd, inet_ntoa(caddr.sin_addr), ntohs(caddr.sin_port));
 
+        pthread_mutex_lock(&lock);    //lock   +
         clients[clients_num] = pclient;
         clients_num++;
+        pthread_mutex_unlock(&lock);  //unlock -
     }
 
     return NULL;
@@ -101,9 +108,11 @@ int main()
     printf("[SERVER] # waiting for connect...\n");
 
     pthread_t pid;
-    pthread_attr_t attr;
+    //pthread_attr_t attr;
+
+    pthread_mutex_init(&lock, NULL);
     //create线程accept incoming TCP连接
-    if( pthread_create(&pid, NULL, &thread_func, NULL) != 0) {
+    if( pthread_create(&pid, NULL, thread_func, NULL) != 0) {
         printf("[SERVER] # create thread failed\n");
         close(server_fd);
         return -1;
@@ -116,13 +125,22 @@ int main()
         //fd_set wset; FD_ZERO(&wset);
         //fd_set eset; FD_ZERO(&eset);
         
-        int maxfds = 0;
+        int maxfds = -1;
 
         struct timeval timeout;
         timeout.tv_sec  = 0;
         timeout.tv_usec = 100000; //100ms
 
-        int ret = select(maxfds, &rset, &wset, &eset, &timeout);
+        pthread_mutex_lock(&lock);  //lock   +
+        uint16_t i = 0;
+        for(i=0; i<clients_num; i++) {
+            echo_client* p = clients[i];
+            maxfds = (p->fd > maxfds) ? p->fd : maxfds;
+            FD_SET(p->fd, &rset);
+        }
+        pthread_mutex_unlock(&lock);//unlock -
+
+        int ret = select(maxfds+1, &rset, NULL, NULL, &timeout);
 
         if(ret < 0) {
             printf("[SERVER] # select error!\n");
@@ -132,7 +150,17 @@ int main()
         if(ret == 0)
             continue;
 
-        
+        pthread_mutex_lock(&lock);   //lock   +
+        for(i=0; i<clients_num; i++) {
+            echo_client* p = clients[i];
+            if( FD_ISSET(p->fd, &rset) ) {
+                int n = recv(p->fd, buffer, 1024, 0);
+                printf("[SERVER] # recv %d bytes \n", n);
+                int m = send(p->fd, buffer, n, 0);
+                printf("[SERVER] # send %d bytes \n", m);
+            }
+        }
+        pthread_mutex_unlock(&lock); //unlock -
     }
 
     printf("[SERVER] # clear\n");

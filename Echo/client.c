@@ -29,10 +29,14 @@ int main()
 
     printf("[CLIENT] # connect to %s:%d success\n", inet_ntoa(addr.sin_addr), ECHO_SERVER_PORT);
 
+    char buffer[1024] = {0};
+
     while(1)
     {
-        int n = send(fd, "hello world", 10, 0);
+        int n = send(fd, "hello world", strlen("hello world"), 0);
         printf("[CLIENT] # send %d bytes\n", n);
+        int m = recv(fd, buffer, n, 0);
+        printf("[CLIENT] # recv %d bytes, %s\n", m, buffer);
         sleep(5);
     }
 
