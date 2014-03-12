@@ -13,6 +13,8 @@ public:
     MutexLock();
     ~MutexLock();
 
+    friend class Condition;
+
     void Lock();
     void UnLock();
 
