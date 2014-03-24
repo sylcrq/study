@@ -18,6 +18,7 @@ public:
 
     void wait();
     void notify();
+    void notifyAll();
 
 private:
     pthread_cond_t condition_;

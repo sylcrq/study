@@ -35,4 +35,9 @@ void Condition::notify()
     pthread_cond_signal(&condition_);
 }
 
+void Condition::notifyAll()
+{
+    pthread_cond_broadcast(&condition_);
+}
+
 } // End of namespace syl

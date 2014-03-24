@@ -1,9 +1,12 @@
 #include <iostream>
 #include <sys/syscall.h>
+#include <stdlib.h>
 
 #include "child.h"
 #include "parent.h"
 
+#include "blockingqueue.h"
+#include "countdownlatch.h"
 #include "condition.h"
 #include "mutexlock.h"
 #include "mutexlockguard.h"
@@ -13,6 +16,10 @@ using namespace syl;
 
 MutexLock g_mutex;
 Condition g_condition(g_mutex);
+BlockingQueue g_bqueue;
+
+CountdownLatch g_countdown(10);
+
 volatile int g_counter = 0;
 
 void mythreadFunc()
@@ -42,23 +49,74 @@ void consumer()
 {
     while(1)
     {
+        int n = g_bqueue.Dequeue();
+        std::cout << "thread: " << n << std::endl;
+    }
+
+#if 0
+    while(1)
+    {
         MutexLockGuard guard(g_mutex);
         while(g_counter == 0)
             g_condition.wait();
         std::cout << "I am alive " << g_counter << std::endl;
         g_counter--;
     }
+#endif
 }
 
 void producer()
 {
+    int n = random();
+    std::cout << "main: " << n << std::endl;
+    g_bqueue.Enqueue(n);
+    sleep(2);
+#if 0
     MutexLockGuard guard(g_mutex);
     g_counter++;
     g_condition.notify();
+#endif
+}
+
+void testCountdownLatch()
+{
+    g_countdown.Await();
+    std::cout << "it's time to go" << std::endl;
 }
 
 int main()
 {
+    std::cout << "enter main" << std::endl;
+
+    boost::function<void()> f;
+    f = boost::bind(&testCountdownLatch);
+
+    Thread thread4(f);
+    Thread thread5(f);
+
+    thread4.Start();
+    thread5.Start();
+
+    while(1)
+    {
+        std::cout << "do count down!" << std::endl;
+        g_countdown.Countdown();
+        sleep(1);
+    }
+
+#if 0
+    boost::function<void()> f;
+    f = boost::bind(&consumer);
+    Thread thread3(f);
+
+    thread3.Start();
+
+    while(1) {
+        producer();
+    }
+#endif
+
+#if 0
     boost::function<void()> f;
     f = boost::bind(&consumer);
     Thread thread2(f);
@@ -69,6 +127,8 @@ int main()
         producer();
         sleep(5);
     }
+#endif
+
 #if 0
     boost::shared_ptr<Parent> parent(new Parent());
     boost::shared_ptr<Child> child(new Child(parent));
