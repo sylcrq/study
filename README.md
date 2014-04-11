@@ -3,6 +3,9 @@ study
 
 just for study
 
+Git-Book中文版: http://git-scm.com/book/zh
+
+
 Echo
 ==========
 实现了一个简单的echo Server,把接收到的字符原样返回给Client
@@ -22,3 +25,10 @@ python
 ==========
 python学习
 
+gtest
+==========
+学习使用googletest进行C++单元测试
+https://code.google.com/p/googletest/
+
+https://code.google.com/p/googletest/wiki/V1_6_Documentation
+http://www.cnblogs.com/coderzh/archive/2009/04/06/1426755.html
