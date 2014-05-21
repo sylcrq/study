@@ -27,8 +27,15 @@ python学习
 
 gtest
 ==========
-学习使用googletest进行C++单元测试
+1. 学习使用googletest进行C++单元测试
 https://code.google.com/p/googletest/
 
 https://code.google.com/p/googletest/wiki/V1_6_Documentation
 http://www.cnblogs.com/coderzh/archive/2009/04/06/1426755.html
+
+2. 结合google mock进行单元测试
+http://code.google.com/p/googlemock/
+
+leetcode
+==========
+leetcode题库和其他一些算法问题的实现
