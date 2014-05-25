@@ -15,12 +15,24 @@ all:
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c max_queue_test.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		-c triangle_test.cpp
+	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		-c remove_duplicates_from_sorted_array_test.cpp
+	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		-c two_sum_test.cpp
+	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c main.cpp
 	g++ -c max_sum_of_subarray.cpp
 	g++ -c max_stack.cpp
 	g++ -c max_queue.cpp
+	g++ -c triangle.cpp
+	g++ -c remove_duplicates_from_sorted_array.cpp
+	g++ -c two_sum.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-lpthread \
+		two_sum.o two_sum_test.o \
+		remove_duplicates_from_sorted_array.o remove_duplicates_from_sorted_array_test.o \
+		triangle.o triangle_test.o \
 		max_queue.o max_queue_test.o \
 		max_stack.o max_stack_test.o \
 		max_sum_of_subarray.o max_sum_of_subarray_test.o \
