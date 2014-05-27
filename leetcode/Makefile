@@ -21,6 +21,10 @@ all:
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c two_sum_test.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		-c longest_substring_without_repeating_char_test.cpp
+	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		-c merge_two_sorted_lists_test.cpp
+	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c main.cpp
 	g++ -c max_sum_of_subarray.cpp
 	g++ -c max_stack.cpp
@@ -28,8 +32,12 @@ all:
 	g++ -c triangle.cpp
 	g++ -c remove_duplicates_from_sorted_array.cpp
 	g++ -c two_sum.cpp
+	g++ -c longest_substring_without_repeating_char.cpp
+	g++ -c merge_two_sorted_lists.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-lpthread \
+		merge_two_sorted_lists.o merge_two_sorted_lists_test.o \
+		longest_substring_without_repeating_char.o longest_substring_without_repeating_char_test.o \
 		two_sum.o two_sum_test.o \
 		remove_duplicates_from_sorted_array.o remove_duplicates_from_sorted_array_test.o \
 		triangle.o triangle_test.o \
