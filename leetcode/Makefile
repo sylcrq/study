@@ -25,6 +25,10 @@ all:
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c merge_two_sorted_lists_test.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		-c quick_sort_test.cpp
+	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		-c add_binary_test.cpp
+	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c main.cpp
 	g++ -c max_sum_of_subarray.cpp
 	g++ -c max_stack.cpp
@@ -34,8 +38,12 @@ all:
 	g++ -c two_sum.cpp
 	g++ -c longest_substring_without_repeating_char.cpp
 	g++ -c merge_two_sorted_lists.cpp
+	g++ -c quick_sort.cpp
+	g++ -c add_binary.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-lpthread \
+		add_binary.o add_binary_test.o \
+		quick_sort.o quick_sort_test.o \
 		merge_two_sorted_lists.o merge_two_sorted_lists_test.o \
 		longest_substring_without_repeating_char.o longest_substring_without_repeating_char_test.o \
 		two_sum.o two_sum_test.o \
