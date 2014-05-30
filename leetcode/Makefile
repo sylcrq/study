@@ -29,6 +29,8 @@ all:
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c add_binary_test.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		-c implement_strstr_test.cpp
+	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c main.cpp
 	g++ -c max_sum_of_subarray.cpp
 	g++ -c max_stack.cpp
@@ -40,8 +42,10 @@ all:
 	g++ -c merge_two_sorted_lists.cpp
 	g++ -c quick_sort.cpp
 	g++ -c add_binary.cpp
+	g++ -c implement_strstr.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-lpthread \
+		implement_strstr.o implement_strstr_test.o \
 		add_binary.o add_binary_test.o \
 		quick_sort.o quick_sort_test.o \
 		merge_two_sorted_lists.o merge_two_sorted_lists_test.o \
