@@ -39,6 +39,10 @@ all:
 		-c same_tree_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c reverse_integer_test.cpp
+	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		-c path_sum_test.cpp
+	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		-c multiply_strings_test.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c main.cpp
 	g++ ${CXXFLAGS} -c max_sum_of_subarray.cpp
@@ -56,8 +60,12 @@ all:
 	g++ ${CXXFLAGS} -c max_depth_of_binary_tree.cpp
 	g++ ${CXXFLAGS} -c same_tree.cpp
 	g++ ${CXXFLAGS} -c reverse_integer.cpp
+	g++ ${CXXFLAGS} -c path_sum.cpp
+	g++ ${CXXFLAGS} -c multiply_strings.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-lpthread \
+		multiply_strings.o multiply_strings_test.o \
+		path_sum.o path_sum_test.o \
 		reverse_integer.o reverse_integer_test.o \
 		same_tree.o same_tree_test.o \
 		max_depth_of_binary_tree.o max_depth_of_binary_tree_test.o \
