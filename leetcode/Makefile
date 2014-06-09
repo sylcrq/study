@@ -43,6 +43,8 @@ all:
 		-c path_sum_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c multiply_strings_test.cpp
+	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		-c the_disjoint_set_test.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c main.cpp
 	g++ ${CXXFLAGS} -c max_sum_of_subarray.cpp
@@ -62,8 +64,10 @@ all:
 	g++ ${CXXFLAGS} -c reverse_integer.cpp
 	g++ ${CXXFLAGS} -c path_sum.cpp
 	g++ ${CXXFLAGS} -c multiply_strings.cpp
+	g++ ${CXXFLAGS} -c the_disjoint_set.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-lpthread \
+		the_disjoint_set.o the_disjoint_set_test.o \
 		multiply_strings.o multiply_strings_test.o \
 		path_sum.o path_sum_test.o \
 		reverse_integer.o reverse_integer_test.o \
