@@ -50,6 +50,8 @@ all:
 		-c linked_list_cycle_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c ${ADT_DIR}/singly_linked_list_test.cpp
+	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		-c ${ADT_DIR}/binary_tree_with_link_test.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c main.cpp
 	g++ ${CXXFLAGS} -c max_sum_of_subarray.cpp
@@ -72,7 +74,9 @@ all:
 	g++ ${CXXFLAGS} -c the_disjoint_set.cpp
 	g++ ${CXXFLAGS} -I${ADT_DIR} -c linked_list_cycle.cpp
 	g++ ${CXXFLAGS} -c ${ADT_DIR}/singly_linked_list.cpp
+	g++ ${CXXFLAGS} -c ${ADT_DIR}/binary_tree_with_link.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		binary_tree_with_link.o binary_tree_with_link_test.o \
 		linked_list_cycle.o linked_list_cycle_test.o \
 		singly_linked_list.o singly_linked_list_test.o \
 		the_disjoint_set.o the_disjoint_set_test.o \
