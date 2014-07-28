@@ -1,5 +1,6 @@
 GMOCK_DIR=/home/syl/developer/gmock-1.6.0
 GTEST_DIR=/home/syl/developer/gtest-1.6.0
+ADT_DIR=./abstract_data_types
 
 CXXFLAGS=-Wall -g -O0
 
@@ -45,10 +46,10 @@ all:
 		-c multiply_strings_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c the_disjoint_set_test.cpp
-	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include -I${ADT_DIR} \
 		-c linked_list_cycle_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
-		-c singly_linked_list_test.cpp
+		-c ${ADT_DIR}/singly_linked_list_test.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c main.cpp
 	g++ ${CXXFLAGS} -c max_sum_of_subarray.cpp
@@ -69,10 +70,9 @@ all:
 	g++ ${CXXFLAGS} -c path_sum.cpp
 	g++ ${CXXFLAGS} -c multiply_strings.cpp
 	g++ ${CXXFLAGS} -c the_disjoint_set.cpp
-	g++ ${CXXFLAGS} -c linked_list_cycle.cpp
-	g++ ${CXXFLAGS} -c singly_linked_list.cpp
+	g++ ${CXXFLAGS} -I${ADT_DIR} -c linked_list_cycle.cpp
+	g++ ${CXXFLAGS} -c ${ADT_DIR}/singly_linked_list.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
-		-lpthread \
 		linked_list_cycle.o linked_list_cycle_test.o \
 		singly_linked_list.o singly_linked_list_test.o \
 		the_disjoint_set.o the_disjoint_set_test.o \
@@ -93,7 +93,9 @@ all:
 		max_queue.o max_queue_test.o \
 		max_stack.o max_stack_test.o \
 		max_sum_of_subarray.o max_sum_of_subarray_test.o \
-		main.o libgmock.a -o test
+		main.o libgmock.a \
+		-lpthread \
+		-o test
 
 clean:
 	rm -rf *.o *.a test
