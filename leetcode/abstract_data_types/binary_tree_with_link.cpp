@@ -63,7 +63,11 @@ void binary_tree_with_link_print(TreeLinkNode* root)
     while(!myqueue.empty())
     {
         TreeLinkNode* tmp = myqueue.front();
-        std::cout << tmp->val << " - ";
+
+        if(tmp->next)
+            std::cout << tmp->val << "(" << tmp->next->val << ")"  << " - ";
+        else
+	    std::cout << tmp->val << "(" << "null" << ")" << " - ";
 
         if(NULL != tmp->left)
             myqueue.push(tmp->left);
