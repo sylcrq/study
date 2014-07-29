@@ -12,12 +12,12 @@ int lengthOfLongestSubstring(string s)
 
     char map_char[256] = {0};
 
-    for(int i=0; i<s.length(); i++)
+    for(size_t i=0; i<s.length(); i++)
     {
         len = 0;
         memset(map_char, 0, 256);
 
-        for(int j=i; j<s.length(); j++)
+        for(size_t j=i; j<s.length(); j++)
         {
             if(map_char[s[j]] == 0)
             {

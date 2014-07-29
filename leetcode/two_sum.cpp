@@ -13,7 +13,7 @@ std::vector<int> twoSum(std::vector<int> &numbers, int target)
     //排序后的数值元素查找原来的位置
     std::map< int, std::vector<int> > number_to_index;
 
-    for(int i=0; i<numbers.size(); i++)
+    for(size_t i=0; i<numbers.size(); i++)
     {
         //number_to_index.insert(std::pair<int, int>(numbers[i], i+1));
         number_to_index[numbers[i]].push_back(i+1);

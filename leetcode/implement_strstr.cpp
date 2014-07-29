@@ -1,11 +1,11 @@
 #include <string.h>
 #include <stdio.h>
 
-char *strStr(char *haystack, char *needle)
+const char *strStr(const char *haystack, const char *needle)
 {
     if(!haystack || !needle) return haystack;
 
-    char* ret = NULL;
+    const char* ret = NULL;
 
     int len_h = strlen(haystack);
     int len_n = strlen(needle);

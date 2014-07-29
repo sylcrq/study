@@ -1,11 +1,11 @@
 #include "gtest/gtest.h"
 
-char *strStr(char *haystack, char *needle);
+const char *strStr(const char *haystack, const char *needle);
 
 TEST(StrstrTestCase, InvaidInput)
 {
-    char* haystack = "hello world";
-    char* needle = "world";
+    const char* haystack = "hello world";
+    const char* needle = "world";
 
     EXPECT_EQ(NULL, strStr(NULL, NULL));
     EXPECT_EQ(NULL, strStr(NULL, needle));
@@ -15,9 +15,9 @@ TEST(StrstrTestCase, InvaidInput)
 
 TEST(StrstrTestCase, Normal)
 {
-    char* haystack = "hello world";
-    char* haystack2 = "hello world !";
-    char* needle = "world";
+    const char* haystack = "hello world";
+    const char* haystack2 = "hello world !";
+    const char* needle = "world";
 
     EXPECT_EQ(haystack+6, strStr(haystack, needle));
     EXPECT_EQ(haystack2+6, strStr(haystack2, needle));

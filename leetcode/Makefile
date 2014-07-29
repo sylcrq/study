@@ -1,6 +1,7 @@
 GMOCK_DIR=/home/syl/developer/gmock-1.6.0
 GTEST_DIR=/home/syl/developer/gtest-1.6.0
 ADT_DIR=./abstract_data_types
+TESTCASE_DIR=./unit_test
 
 CXXFLAGS=-Wall -g -O0
 
@@ -11,51 +12,51 @@ all:
 		-I${GMOCK_DIR} -c ${GMOCK_DIR}/src/gmock-all.cc
 	ar -rv libgmock.a gtest-all.o gmock-all.o
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
-		-c max_sum_of_subarray_test.cpp
+		-c ${TESTCASE_DIR}/max_sum_of_subarray_test.cpp
+	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include -I. \
+		-c ${TESTCASE_DIR}/max_stack_test.cpp
+	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include -I. \
+		-c ${TESTCASE_DIR}/max_queue_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
-		-c max_stack_test.cpp
+		-c ${TESTCASE_DIR}/triangle_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
-		-c max_queue_test.cpp
+		-c ${TESTCASE_DIR}/remove_duplicates_from_sorted_array_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
-		-c triangle_test.cpp
+		-c ${TESTCASE_DIR}/two_sum_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
-		-c remove_duplicates_from_sorted_array_test.cpp
+		-c ${TESTCASE_DIR}/longest_substring_without_repeating_char_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
-		-c two_sum_test.cpp
+		-c ${TESTCASE_DIR}/merge_two_sorted_lists_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
-		-c longest_substring_without_repeating_char_test.cpp
+		-c ${TESTCASE_DIR}/quick_sort_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
-		-c merge_two_sorted_lists_test.cpp
+		-c ${TESTCASE_DIR}/add_binary_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
-		-c quick_sort_test.cpp
+		-c ${TESTCASE_DIR}/implement_strstr_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
-		-c add_binary_test.cpp
+		-c ${TESTCASE_DIR}/single_number_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
-		-c implement_strstr_test.cpp
+		-c ${TESTCASE_DIR}/max_depth_of_binary_tree_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
-		-c single_number_test.cpp
+		-c ${TESTCASE_DIR}/same_tree_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
-		-c max_depth_of_binary_tree_test.cpp
+		-c ${TESTCASE_DIR}/reverse_integer_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
-		-c same_tree_test.cpp
+		-c ${TESTCASE_DIR}/path_sum_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
-		-c reverse_integer_test.cpp
+		-c ${TESTCASE_DIR}/multiply_strings_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
-		-c path_sum_test.cpp
-	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
-		-c multiply_strings_test.cpp
-	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
-		-c the_disjoint_set_test.cpp
+		-c ${TESTCASE_DIR}/the_disjoint_set_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include -I${ADT_DIR} \
-		-c linked_list_cycle_test.cpp
+		-c ${TESTCASE_DIR}/linked_list_cycle_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c ${ADT_DIR}/singly_linked_list_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c ${ADT_DIR}/binary_tree_with_link_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include -I${ADT_DIR} \
-		-c populating_next_right_pointers_in_each_node_test.cpp
+		-c ${TESTCASE_DIR}/populating_next_right_pointers_in_each_node_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
-		-c roman_to_integer_test.cpp
+		-c ${TESTCASE_DIR}/roman_to_integer_test.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c main.cpp
 	g++ ${CXXFLAGS} -c max_sum_of_subarray.cpp
