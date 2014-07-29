@@ -14,13 +14,33 @@
 //assume that it is a perfect binary tree 
 //(ie, all leaves are at the same level, and every parent has two children)
 
+// 一种使用递归的巧妙实现
+void connect_recursive(TreeLinkNode* root)
+{
+    if(!root) return;
+
+    if(NULL != root->left)
+        root->left->next = root->right;
+
+    if(NULL != root->right)
+    {
+        if(NULL != root->next)
+            root->right->next = root->next->left;
+        else
+            root->right->next = NULL;
+    }
+
+    connect_recursive(root->left);
+    connect_recursive(root->right);
+}
+
 void connect(TreeLinkNode *root)
 {
     if(!root) return;
 
     std::queue<TreeLinkNode*> myqueue;  // 辅助队列
-    int level = 0;
-    int max_nodes = 1;
+    int level = 0;      // 树的深度
+    int max_nodes = 1;  // 树深度为level时的最大节点数
 
     myqueue.push(root);
 

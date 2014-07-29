@@ -24,6 +24,8 @@ TEST(LinkedListCycleTestCase, LinkedListNoCycle)
     singly_linked_list_traverse(head);
 
     EXPECT_FALSE( hasCycle(head) );  // 1 -> 2 -> 3
+
+    //TODO: release memory
 }
 
 TEST(LinkedListCycleTestCase, LinkedListHasCycle)
@@ -34,6 +36,8 @@ TEST(LinkedListCycleTestCase, LinkedListHasCycle)
     
     EXPECT_TRUE( hasCycle(head) );
 
+    //TODO: release memory
+
     ListNode* head2 = NULL;
     head2 = singly_linked_list_add(head2, 1);
     singly_linked_list_add(head2, 2);
@@ -43,4 +47,6 @@ TEST(LinkedListCycleTestCase, LinkedListHasCycle)
     singly_linked_list_cycle(head2, node);
 
     EXPECT_TRUE( hasCycle(head2) );
+
+    //TODO: release memory
 }

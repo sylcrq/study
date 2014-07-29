@@ -16,5 +16,7 @@ TEST(SinglyLinkedListTestCase, Normal)
     head = singly_linked_list_remove(head, head);
 
     singly_linked_list_traverse(head);
+
+    //TODO: release memory
 }
 

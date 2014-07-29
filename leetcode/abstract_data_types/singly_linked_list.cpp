@@ -60,6 +60,9 @@ ListNode* singly_linked_list_remove(ListNode* head, ListNode* node)
         }
     }
 
+    //release memory
+    delete node;
+
     return ret;
 }
 
