@@ -61,6 +61,8 @@ all:
 		-c ${TESTCASE_DIR}/gray_code_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c ${TESTCASE_DIR}/plus_one_test.cpp
+	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		-c ${TESTCASE_DIR}/rotate_image_test.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c main.cpp
 	g++ ${CXXFLAGS} -c max_sum_of_subarray.cpp
@@ -88,7 +90,9 @@ all:
 	g++ ${CXXFLAGS} -c roman_to_integer.cpp
 	g++ ${CXXFLAGS} -c gray_code.cpp
 	g++ ${CXXFLAGS} -c plus_one.cpp
+	g++ ${CXXFLAGS} -c rotate_image.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		rotate_image.o rotate_image_test.o \
 		plus_one.o plus_one_test.o \
 		gray_code.o gray_code_test.o \
 		roman_to_integer.o roman_to_integer_test.o \
