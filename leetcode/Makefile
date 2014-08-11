@@ -65,6 +65,8 @@ all:
 		-c ${TESTCASE_DIR}/rotate_image_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c ${TESTCASE_DIR}/jump_game_test.cpp
+	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		-c ${TESTCASE_DIR}/jump_game_II_test.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c main.cpp
 	g++ ${CXXFLAGS} -c max_sum_of_subarray.cpp
@@ -94,7 +96,9 @@ all:
 	g++ ${CXXFLAGS} -c plus_one.cpp
 	g++ ${CXXFLAGS} -c rotate_image.cpp
 	g++ ${CXXFLAGS} -c jump_game.cpp
+	g++ ${CXXFLAGS} -c jump_game_II.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		jump_game_II.o jump_game_II_test.o \
 		jump_game.o jump_game_test.o \
 		rotate_image.o rotate_image_test.o \
 		plus_one.o plus_one_test.o \
