@@ -71,6 +71,8 @@ all:
 		-c ${TESTCASE_DIR}/sort_colors_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c ${TESTCASE_DIR}/climbing_stairs_test.cpp
+	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		-c ${TESTCASE_DIR}/best_time_to_buy_and_sell_stock_test.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c main.cpp
 	g++ ${CXXFLAGS} -c max_sum_of_subarray.cpp
@@ -103,7 +105,9 @@ all:
 	g++ ${CXXFLAGS} -c jump_game_II.cpp
 	g++ ${CXXFLAGS} -c sort_colors.cpp
 	g++ ${CXXFLAGS} -c climbing_stairs.cpp
+	g++ ${CXXFLAGS} -c best_time_to_buy_and_sell_stock.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		best_time_to_buy_and_sell_stock.o best_time_to_buy_and_sell_stock_test.o \
 		climbing_stairs.o climbing_stairs_test.o \
 		sort_colors.o sort_colors_test.o \
 		jump_game_II.o jump_game_II_test.o \
