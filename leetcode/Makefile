@@ -75,6 +75,8 @@ all:
 		-c ${TESTCASE_DIR}/best_time_to_buy_and_sell_stock_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c ${TESTCASE_DIR}/best_time_to_buy_and_sell_stock_II_test.cpp
+	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		-c ${TESTCASE_DIR}/unique_binary_search_trees_test.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c main.cpp
 	g++ ${CXXFLAGS} -c max_sum_of_subarray.cpp
@@ -109,7 +111,9 @@ all:
 	g++ ${CXXFLAGS} -c climbing_stairs.cpp
 	g++ ${CXXFLAGS} -c best_time_to_buy_and_sell_stock.cpp
 	g++ ${CXXFLAGS} -c best_time_to_buy_and_sell_stock_II.cpp
+	g++ ${CXXFLAGS} -c unique_binary_search_trees.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		unique_binary_search_trees.o unique_binary_search_trees_test.o \
 		best_time_to_buy_and_sell_stock_II.o best_time_to_buy_and_sell_stock_II_test.o \
 		best_time_to_buy_and_sell_stock.o best_time_to_buy_and_sell_stock_test.o \
 		climbing_stairs.o climbing_stairs_test.o \
