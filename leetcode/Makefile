@@ -77,6 +77,10 @@ all:
 		-c ${TESTCASE_DIR}/best_time_to_buy_and_sell_stock_II_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c ${TESTCASE_DIR}/unique_binary_search_trees_test.cpp
+	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		-c ${ADT_DIR}/binary_tree_test.cpp
+	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include -I${ADT_DIR} \
+		-c ${TESTCASE_DIR}/binary_tree_xorder_traversal_test.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c main.cpp
 	g++ ${CXXFLAGS} -c max_sum_of_subarray.cpp
@@ -112,7 +116,16 @@ all:
 	g++ ${CXXFLAGS} -c best_time_to_buy_and_sell_stock.cpp
 	g++ ${CXXFLAGS} -c best_time_to_buy_and_sell_stock_II.cpp
 	g++ ${CXXFLAGS} -c unique_binary_search_trees.cpp
+	g++ ${CXXFLAGS} -c ${ADT_DIR}/binary_tree.cpp
+	g++ ${CXXFLAGS} -I${ADT_DIR} -c binary_tree_preorder_traversal.cpp
+	g++ ${CXXFLAGS} -I${ADT_DIR} -c binary_tree_inorder_traversal.cpp
+	g++ ${CXXFLAGS} -I${ADT_DIR} -c binary_tree_postorder_traversal.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		binary_tree_preorder_traversal.o \
+		binary_tree_inorder_traversal.o \
+		binary_tree_postorder_traversal.o \
+		binary_tree_xorder_traversal_test.o \
+		binary_tree.o binary_tree_test.o \
 		unique_binary_search_trees.o unique_binary_search_trees_test.o \
 		best_time_to_buy_and_sell_stock_II.o best_time_to_buy_and_sell_stock_II_test.o \
 		best_time_to_buy_and_sell_stock.o best_time_to_buy_and_sell_stock_test.o \
