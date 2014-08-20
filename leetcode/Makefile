@@ -81,6 +81,8 @@ all:
 		-c ${ADT_DIR}/binary_tree_test.cpp
 	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include -I${ADT_DIR} \
 		-c ${TESTCASE_DIR}/binary_tree_xorder_traversal_test.cpp
+	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		-c ${TESTCASE_DIR}/search_insert_position_test.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
 		-c main.cpp
 	g++ ${CXXFLAGS} -c max_sum_of_subarray.cpp
@@ -120,7 +122,9 @@ all:
 	g++ ${CXXFLAGS} -I${ADT_DIR} -c binary_tree_preorder_traversal.cpp
 	g++ ${CXXFLAGS} -I${ADT_DIR} -c binary_tree_inorder_traversal.cpp
 	g++ ${CXXFLAGS} -I${ADT_DIR} -c binary_tree_postorder_traversal.cpp
+	g++ ${CXXFLAGS} -c search_insert_position.cpp
 	g++ -I${GTEST_DIR}/include -I${GMOCK_DIR}/include \
+		search_insert_position.o search_insert_position_test.o \
 		binary_tree_preorder_traversal.o \
 		binary_tree_inorder_traversal.o \
 		binary_tree_postorder_traversal.o \
