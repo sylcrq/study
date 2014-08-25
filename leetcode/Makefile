@@ -47,6 +47,7 @@ SRC_FILES = path_sum.cpp \
 			$(ADT_DIR)/binary_tree_with_link.cpp \
 			$(ADT_DIR)/singly_linked_list.cpp \
 			$(ADT_DIR)/binary_tree.cpp \
+			maximum_subarray.cpp \
 
 SRC_TEST_FILES = $(TESTCASE_DIR)/multiply_strings_test.cpp \
 				 $(TESTCASE_DIR)/merge_two_sorted_lists_test.cpp \
@@ -85,6 +86,7 @@ SRC_TEST_FILES = $(TESTCASE_DIR)/multiply_strings_test.cpp \
 				 $(ADT_DIR)/binary_tree_with_link_test.cpp \
 				 $(ADT_DIR)/singly_linked_list_test.cpp \
 				 $(ADT_DIR)/binary_tree_test.cpp \
+				 $(TESTCASE_DIR)/maximum_subarray_test.cpp \
 
 OBJ_FILES = $(patsubst %.cpp,%.o,$(SRC_FILES) )
 OBJ_TEST_FILES = $(patsubst %.cpp,%.o,$(SRC_TEST_FILES) )
