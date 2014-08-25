@@ -1,26 +1,28 @@
 GMOCK_DIR=/home/syl/developer/gmock-1.6.0
 GTEST_DIR=/home/syl/developer/gtest-1.6.0
+
 ADT_DIR=./abstract_data_types
 TESTCASE_DIR=./unit_test
+OTHER_DIR=./other
 
 CXXFLAGS=-Wall -g -O0
 
 TARGET = test
 SRC_FILES = path_sum.cpp \
 			merge_two_sorted_lists.cpp \
-			max_sum_of_subarray.cpp \
-			max_stack.cpp \
-			max_queue.cpp \
+			$(OTHER_DIR)/max_sum_of_subarray.cpp \
+			$(OTHER_DIR)/max_stack.cpp \
+			$(OTHER_DIR)/max_queue.cpp \
 			max_depth_of_binary_tree.cpp \
 			linked_list_cycle.cpp \
 			add_binary.cpp \
-			triangle.cpp \
-			the_disjoint_set.cpp \
+			$(OTHER_DIR)/triangle.cpp \
+			$(OTHER_DIR)/the_disjoint_set.cpp \
 			single_number.cpp \
 			same_tree.cpp \
 			reverse_integer.cpp \
 			remove_duplicates_from_sorted_array.cpp \
-			quick_sort.cpp \
+			$(OTHER_DIR)/quick_sort.cpp \
 			populating_next_right_pointers_in_each_node.cpp \
 			roman_to_integer.cpp \
 			implement_strstr.cpp \
@@ -48,20 +50,20 @@ SRC_FILES = path_sum.cpp \
 
 SRC_TEST_FILES = $(TESTCASE_DIR)/multiply_strings_test.cpp \
 				 $(TESTCASE_DIR)/merge_two_sorted_lists_test.cpp \
-				 $(TESTCASE_DIR)/max_sum_of_subarray_test.cpp \
-				 $(TESTCASE_DIR)/max_stack_test.cpp \
-				 $(TESTCASE_DIR)/max_queue_test.cpp \
+				 $(OTHER_DIR)/max_sum_of_subarray_test.cpp \
+				 $(OTHER_DIR)/max_stack_test.cpp \
+				 $(OTHER_DIR)/max_queue_test.cpp \
 				 $(TESTCASE_DIR)/max_depth_of_binary_tree_test.cpp \
 				 $(TESTCASE_DIR)/longest_substring_without_repeating_char_test.cpp \
 				 $(TESTCASE_DIR)/add_binary_test.cpp \
 				 $(TESTCASE_DIR)/two_sum_test.cpp \
-				 $(TESTCASE_DIR)/triangle_test.cpp \
-				 $(TESTCASE_DIR)/the_disjoint_set_test.cpp \
+				 $(OTHER_DIR)/triangle_test.cpp \
+				 $(OTHER_DIR)/the_disjoint_set_test.cpp \
 				 $(TESTCASE_DIR)/single_number_test.cpp \
 				 $(TESTCASE_DIR)/same_tree_test.cpp \
 				 $(TESTCASE_DIR)/reverse_integer_test.cpp \
 				 $(TESTCASE_DIR)/remove_duplicates_from_sorted_array_test.cpp \
-				 $(TESTCASE_DIR)/quick_sort_test.cpp \
+				 $(OTHER_DIR)/quick_sort_test.cpp \
 				 $(TESTCASE_DIR)/path_sum_test.cpp \
 				 $(TESTCASE_DIR)/populating_next_right_pointers_in_each_node_test.cpp \
 				 $(TESTCASE_DIR)/linked_list_cycle_test.cpp \
@@ -100,10 +102,10 @@ $(OBJ_FILES):%.o:%.cpp
 	g++ ${CXXFLAGS} -I${ADT_DIR} -o $@ -c $<
 
 $(OBJ_TEST_FILES):%.o:%.cpp
-	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include -I${ADT_DIR} -I. -o $@ -c $<
+	g++ ${CXXFLAGS} -I${GTEST_DIR}/include -I${GMOCK_DIR}/include -I${ADT_DIR} -o $@ -c $<
 
 
 
 
 clean:
-	rm -rf *.o $(TESTCASE_DIR)/*.o $(ADT_DIR)/*.o *.a test
+	rm -rf *.o $(TESTCASE_DIR)/*.o $(ADT_DIR)/*.o $(OTHER_DIR)/*.o *.a test
