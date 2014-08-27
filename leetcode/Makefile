@@ -49,6 +49,7 @@ SRC_FILES = path_sum.cpp \
 			$(ADT_DIR)/binary_tree.cpp \
 			maximum_subarray.cpp \
 			integer_to_roman.cpp \
+			remove_element.cpp \
 
 SRC_TEST_FILES = $(TESTCASE_DIR)/multiply_strings_test.cpp \
 				 $(TESTCASE_DIR)/merge_two_sorted_lists_test.cpp \
@@ -89,6 +90,7 @@ SRC_TEST_FILES = $(TESTCASE_DIR)/multiply_strings_test.cpp \
 				 $(ADT_DIR)/binary_tree_test.cpp \
 				 $(TESTCASE_DIR)/maximum_subarray_test.cpp \
 				 $(TESTCASE_DIR)/integer_to_roman_test.cpp \
+				 $(TESTCASE_DIR)/remove_element_test.cpp \
 
 OBJ_FILES = $(patsubst %.cpp,%.o,$(SRC_FILES) )
 OBJ_TEST_FILES = $(patsubst %.cpp,%.o,$(SRC_TEST_FILES) )
