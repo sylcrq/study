@@ -52,6 +52,7 @@ SRC_FILES = path_sum.cpp \
 			remove_element.cpp \
 			n_queens.cpp \
 			n_queens_ii.cpp \
+			balanced_binary_tree.cpp \
 
 SRC_TEST_FILES = $(TESTCASE_DIR)/multiply_strings_test.cpp \
 				 $(TESTCASE_DIR)/merge_two_sorted_lists_test.cpp \
@@ -94,6 +95,7 @@ SRC_TEST_FILES = $(TESTCASE_DIR)/multiply_strings_test.cpp \
 				 $(TESTCASE_DIR)/integer_to_roman_test.cpp \
 				 $(TESTCASE_DIR)/remove_element_test.cpp \
 				 $(TESTCASE_DIR)/n_queens_test.cpp \
+				 $(TESTCASE_DIR)/balanced_binary_tree_test.cpp \
 
 OBJ_FILES = $(patsubst %.cpp,%.o,$(SRC_FILES) )
 OBJ_TEST_FILES = $(patsubst %.cpp,%.o,$(SRC_TEST_FILES) )
